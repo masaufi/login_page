@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'masaufi/login_page:latest'
+        DOCKER_IMAGE = 'masaufi/login_page'
         DOCKER_HOST = 'tcp://localhost:2375'
         DB_HOST = 'db'
         DB_USER = 'root'

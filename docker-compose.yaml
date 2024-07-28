@@ -2,14 +2,18 @@ version: '3.8'
 
 services:
   app:
-    image: masaufi/login_page:latest
+    image: masaufi/login_page
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    environment:
-      NODE_ENV: development
+    # environment:
+    #   NODE_ENV: development
+    #   DB_HOST: db
+    #   DB_USER: root
+    #   DB_PASSWORD: example
+    #   DB_NAME: mydatabase
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
