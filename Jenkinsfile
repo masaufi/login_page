@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git url: 'https://github.com/masaufi/login_page.git', branch: 'master'
+                git url: 'https://github.com/masaufi/login_page.git', branch: 'main'
             }
         }
         
