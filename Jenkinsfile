@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_IMAGE = 'masaufi/login_page:latest'
+    }
+
     stages {
         stage('Clone Repository') {
             steps {
@@ -8,18 +12,18 @@ pipeline {
             }
         }
         
-        stage('Build and Deploy with Docker Compose') {
+        stage('Build Docker Image') {
             steps {
                 script {
-                    dockerCompose.up '--build -d'
+                    docker.build(DOCKER_IMAGE)
                 }
             }
         }
-
+        
         stage('Run Tests') {
             steps {
                 script {
-                    docker.image('masaufi/login_page:latest').inside {
+                    docker.image(DOCKER_IMAGE).inside {
                         sh 'npm install'
                         sh 'npm test'
                     }
@@ -27,9 +31,11 @@ pipeline {
             }
         }
         
-        stage('Deploy') {
+        stage('Deploy with Docker Compose') {
             steps {
-                echo 'Deployment steps would go here.'
+                script {
+                    sh 'docker-compose up --build -d'
+                }
             }
         }
     }
