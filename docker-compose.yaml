@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   app:
+    image: masaufi/login_page:latest
     build:
       context: .
       dockerfile: Dockerfile

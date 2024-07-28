@@ -3,6 +3,11 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'masaufi/login_page:latest'
+        DOCKER_HOST = 'tcp://localhost:2375'
+        DB_HOST = 'db'
+        DB_USER = 'root'
+        DB_PASSWORD = 'example'
+        DB_NAME = 'mydatabase'
     }
 
     stages {
@@ -23,7 +28,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
-                    docker.image(DOCKER_IMAGE).inside {
+                    docker.image(DOCKER_IMAGE).inside('/usr/src/app') {
                         sh 'npm install'
                         sh 'npm test'
                     }
