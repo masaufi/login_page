@@ -8,12 +8,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8031:8031"
-    # environment:
-    #   NODE_ENV: development
-    #   DB_HOST: db
-    #   DB_USER: root
-    #   DB_PASSWORD: example
-    #   DB_NAME: mydatabase
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
